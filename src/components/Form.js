@@ -4,6 +4,7 @@ import phonebookOperation from "../Redux/phonebook/phonebook-operation";
 
 import shortid from "shortid";
 import s from "./PhoneBock.module.css";
+import Button from "./Button/Button";
 
 function Form({ contactList, onSubmit }) {
   const [newName, setName] = useState("");
@@ -23,6 +24,7 @@ function Form({ contactList, onSubmit }) {
         return;
     }
   };
+
   const addContact = (e) => {
     // const lengthInputNemeChech = newName.length;
     // const lengthInputNumberChech = number.length;
@@ -73,9 +75,10 @@ function Form({ contactList, onSubmit }) {
         onChange={InputValues}
         autoComplete="off"
       ></input>
-      <button className={s.btnForm} type="submite">
-        Додати контакт
-      </button>
+      {/* <button className={s.btnForm} type="submite">
+        <span> Додати контакт</span>
+      </button> */}
+      <Button>Додати контакт</Button>
     </form>
   );
 }

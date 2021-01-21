@@ -1,18 +1,25 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
 import {
+  fetchContactRequest,
+  fetchContactSuccess,
+  fetchContactError,
+  deleteContactRequest,
+  deleteContactSuccess,
+  deleteContactError,
   addContactRequest,
   addContactSuccess,
   addContactError,
-  onDeleted,
   veluesFilter,
 } from "./phonebook-actions";
 
 // import types from "./phonebook-types";
 
 const contacts = createReducer([], {
+  [fetchContactSuccess]: (_, { payload }) => payload,
   [addContactSuccess]: (state, { payload }) => [payload, ...state],
-  [onDeleted]: (state, { payload }) => state.filter(({ id }) => id !== payload),
+  [deleteContactSuccess]: (state, { payload }) =>
+    state.filter(({ id }) => id !== payload),
 });
 
 const filter = createReducer("", {
@@ -23,6 +30,12 @@ const loading = createReducer(false, {
   [addContactRequest]: () => true,
   [addContactSuccess]: () => false,
   [addContactError]: () => false,
+  [deleteContactRequest]: () => true,
+  [deleteContactSuccess]: () => false,
+  [deleteContactError]: () => false,
+  [fetchContactRequest]: () => true,
+  [fetchContactSuccess]: () => false,
+  [fetchContactError]: () => false,
 });
 export default combineReducers({
   contacts,

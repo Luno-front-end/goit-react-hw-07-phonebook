@@ -1,18 +1,43 @@
+body {
+  background: url(../images/dark-background.jpg);
+  background-attachment: fixed;
+  font-family: "Yanone Kaffeesatz";
+}
 .container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
   width: 800px;
+  min-height: 600px;
   margin-left: auto;
   margin-right: auto;
-  border: 1px solid black;
+  transform: translate(-50%, -50%);
+  background-color: rgb(48, 17, 83);
+  border-radius: 40px;
 }
 .headingForm {
   display: flex;
   justify-content: center;
   margin-bottom: 0;
+  color: #ffffff;
 }
 .contactList {
   display: flex;
   justify-content: center;
+
+  font-size: 30px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  letter-spacing: 3px;
+  color: #ffffff;
 }
+.labelSearch {
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: #868686;
+}
+
 .form {
   display: flex;
   flex-direction: column;
@@ -20,32 +45,65 @@
   align-items: center;
 }
 .labelName {
+  font-size: 30px;
   margin-top: 15px;
   margin-bottom: 15px;
+  letter-spacing: 3px;
+  color: #868686;
 }
 .labelNumber {
+  font-size: 30px;
   margin-top: 15px;
   margin-bottom: 15px;
+  letter-spacing: 3px;
+  color: #868686;
+}
+.nameContact {
+  font-size: 25px;
+  margin-top: 15px;
+  letter-spacing: 3px;
+  color: #868686;
+}
+.numberContact {
+  font-size: 25px;
+  margin-top: 15px;
+  letter-spacing: 3px;
+  color: #000000;
+}
+.numberContact a:hover {
+  color: #66af50;
+  transition: 500ms color;
+}
+.infoContact {
+  display: flex;
+  justify-content: center;
+  font-size: 15px;
+  margin-top: 15px;
+  /* letter-spacing: 3px; */
+  color: #868686;
+}
+
+input {
+  background-color: rgb(0, 0, 0);
+  border: 1px solid white;
+  border-radius: 15px;
+  width: 300px;
+  transition: 500ms border;
+  color: rgb(131, 131, 131);
+  font-family: "Yanone Kaffeesatz";
+  font-weight: 400;
+  font-size: 17px;
+  padding: 8px;
 }
 
 input:focus {
-  outline-color: rgb(201, 151, 57);
-}
-
-.btnForm {
-  min-width: 180px;
-  color: white;
-  background-color: rgb(0, 0, 0);
-  border: none;
-  border-radius: 5px;
-  margin-top: 10px;
+  /* outline-color: #860055; */
   outline: none;
-}
-.btnForm:hover {
-  background-color: rgb(201, 151, 57);
-}
-.btnForm:focus {
-  background-color: rgb(201, 151, 57);
+  border: 5px solid white;
+
+  border-color: #860055;
+  background-color: rgb(0, 0, 0);
+  transition: 500ms border;
 }
 
 .containerSearch {
@@ -54,11 +112,6 @@ input:focus {
   justify-content: center;
   align-items: center;
 }
-
-/* .labelSearch {
-}
-.inputSearch {
-} */
 
 ul {
   list-style: none;

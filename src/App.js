@@ -1,12 +1,20 @@
-// import { useState, useEffect } from "react";
+import { useEffect } from "react";
 // import shortid from 'shortid';
+import { useDispatch } from "react-redux";
+
 import s from "./components/PhoneBock.module.css";
 
 import Form from "./components/Form";
 import ContactList from "./components/ContactList";
 import SearchContact from "./components/SearchContact";
+import phonebookOperations from "./Redux/phonebook/phonebook-operation";
 
 export default function Mobile() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(phonebookOperations.fetchContact());
+  }, [dispatch]);
+
   return (
     <div className={s.container}>
       <h1 className={s.headingForm}>Телефонна книга</h1>

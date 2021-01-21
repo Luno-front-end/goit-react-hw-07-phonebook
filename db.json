@@ -1,24 +1,3 @@
 {
-  "contacts": [
-    {
-      "newName": "вфцвцф",
-      "number": "87489",
-      "id": 1
-    },
-    {
-      "newName": "feafsae",
-      "number": "",
-      "id": 2
-    },
-    {
-      "newName": "dawdaw",
-      "number": "79846",
-      "id": 3
-    },
-    {
-      "newName": "dawdaw",
-      "number": "418418",
-      "id": 4
-    }
-  ]
+  "contacts": []
 }
