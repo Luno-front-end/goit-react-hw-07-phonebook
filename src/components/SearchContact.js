@@ -1,12 +1,19 @@
 import React from "react";
-// import PropTypes from "prop-types";
 import shortid from "shortid";
 import * as phonebookActions from "../Redux/phonebook/phonebook-actions";
 
 import s from "./PhoneBock.module.css";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import * as phonebookSelectors from "../Redux/phonebook/phonebook-selectors";
 
-function SearchContact({ value, searchContact }) {
+export default function SearchContact() {
+  const state = useSelector(phonebookSelectors.getContactFilter);
+  const dispatch = useDispatch();
+
+  const searchContact = (e) => {
+    dispatch(phonebookActions.veluesFilter(e.target.value));
+  };
+
   const id = shortid.generate();
   return (
     <div className={s.containerSearch}>
@@ -16,25 +23,12 @@ function SearchContact({ value, searchContact }) {
       <input
         type="text"
         name="filter"
-        value={value}
+        value={state}
         onChange={searchContact}
         id={id}
+        autoComplete="off"
         className={s.inputSearch}
       ></input>
     </div>
   );
 }
-// SearchContact.propTypes = {
-//   velue: PropTypes.string.isRequired,
-//   SearchContact: PropTypes.func.isRequired,
-// };
-
-const mapStateToProps = (state) => ({
-  value: state.phonebook.filter,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  searchContact: (e) => dispatch(phonebookActions.veluesFilter(e.target.value)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(SearchContact);

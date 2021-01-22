@@ -1,14 +1,19 @@
 import { useState } from "react";
-import { connect } from "react-redux";
-import phonebookOperation from "../Redux/phonebook/phonebook-operation";
+import { useDispatch, useSelector } from "react-redux";
+import phonebookOperation from "../Redux/phonebook/phonebook-operations";
 
 import shortid from "shortid";
 import s from "./PhoneBock.module.css";
 import Button from "./Button/Button";
+import * as phonebookSelectors from "../Redux/phonebook/phonebook-selectors";
 
-function Form({ contactList, onSubmit }) {
+export default function Form() {
   const [newName, setName] = useState("");
   const [number, setNumber] = useState("");
+
+  const state = useSelector(phonebookSelectors.getContactList);
+
+  const dispatch = useDispatch();
 
   const InputValues = (e) => {
     const { name, value } = e.currentTarget;
@@ -26,20 +31,34 @@ function Form({ contactList, onSubmit }) {
   };
 
   const addContact = (e) => {
-    // const lengthInputNemeChech = newName.length;
-    // const lengthInputNumberChech = number.length;
     e.preventDefault();
-    // if (lengthInputNemeChech < 2 || lengthInputNemeChech > 10) {
-    //   alert('Введіть ім"я більше 1-го символа і не більше 10');
-    //   return;
-    // }
-    // if (lengthInputNumberChech < 7 || lengthInputNumberChech > 10) {
-    //   alert("Введіть номер більше 7-ми цифр і не більше 10");
-    //   return;
-    // }
 
-    onSubmit(newName, number, contactList);
+    const lengthInputNemeChech = newName.length;
+    const lengthInputNumberChech = number.length;
+    if (lengthInputNemeChech < 2 || lengthInputNemeChech > 10) {
+      alert('Введіть ім"я більше 1-го символа і не більше 10');
+      return;
+    }
+    if (lengthInputNumberChech < 7 || lengthInputNumberChech > 10) {
+      alert("Введіть номер більше 7-ми цифр і не більше 10");
+      return;
+    }
+
+    onSubmit(newName, number, state);
+
     resetInputValues();
+  };
+
+  const onCheckName = (contactList, newNameF) => {
+    return contactList.some(({ newName }) => newName === newNameF);
+  };
+
+  const onSubmit = (newName, number, contactList) => {
+    if (onCheckName(contactList, newName)) {
+      alert('Це ім"я вже існує');
+      return;
+    }
+    dispatch(phonebookOperation.addContact(newName, number));
   };
 
   const resetInputValues = () => {
@@ -75,29 +94,8 @@ function Form({ contactList, onSubmit }) {
         onChange={InputValues}
         autoComplete="off"
       ></input>
-      {/* <button className={s.btnForm} type="submite">
-        <span> Додати контакт</span>
-      </button> */}
+
       <Button>Додати контакт</Button>
     </form>
   );
 }
-
-const onCheckName = (contactList, newNameF) => {
-  return contactList.some(({ newName }) => newName === newNameF);
-};
-
-const mapStateToProps = (state) => ({
-  contactList: state.phonebook.contacts,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onSubmit: (newName, number, contactList) => {
-    if (onCheckName(contactList, newName)) {
-      alert('Це ім"я вже існує');
-      return;
-    }
-    dispatch(phonebookOperation.addContact(newName, number));
-  },
-});
-export default connect(mapStateToProps, mapDispatchToProps)(Form);

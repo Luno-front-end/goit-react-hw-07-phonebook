@@ -7,7 +7,7 @@ import s from "./components/PhoneBock.module.css";
 import Form from "./components/Form";
 import ContactList from "./components/ContactList";
 import SearchContact from "./components/SearchContact";
-import phonebookOperations from "./Redux/phonebook/phonebook-operation";
+import phonebookOperations from "./Redux/phonebook/phonebook-operations";
 
 export default function Mobile() {
   const dispatch = useDispatch();

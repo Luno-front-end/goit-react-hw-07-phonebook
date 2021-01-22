@@ -69,10 +69,11 @@ body {
   margin-top: 15px;
   letter-spacing: 3px;
   color: #000000;
+  transition: 200ms color linear;
 }
 .numberContact a:hover {
   color: #66af50;
-  transition: 500ms color;
+  transition: 300ms color linear;
 }
 .infoContact {
   display: flex;
@@ -88,7 +89,7 @@ input {
   border: 1px solid white;
   border-radius: 15px;
   width: 300px;
-  transition: 500ms border;
+  transition: 200ms border linear;
   color: rgb(131, 131, 131);
   font-family: "Yanone Kaffeesatz";
   font-weight: 400;
@@ -103,7 +104,7 @@ input:focus {
 
   border-color: #860055;
   background-color: rgb(0, 0, 0);
-  transition: 500ms border;
+  transition: 200ms border linear;
 }
 
 .containerSearch {
